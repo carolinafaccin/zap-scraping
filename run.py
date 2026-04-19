@@ -3,7 +3,7 @@ warnings.filterwarnings("ignore")
 
 from src.scraper import main as run_scraper
 from src.geocode import main as run_geocode
-from src.aggregate import main as run_aggregate
+from src.export_gpkg import main as run_export_gpkg
 
 
 def main():
@@ -18,8 +18,7 @@ def main():
             print(f"\n[!] Geocoding {transacao} failed — skipping.")
             continue
 
-        if transacao == "venda":
-            run_aggregate(str(geo_path))
+        run_export_gpkg(str(geo_path))
 
 
 if __name__ == "__main__":

@@ -408,13 +408,22 @@ class ScraperZap:
                 max_price = int(self.precomin * 1.02) + 1
             self.precomin = int(max_price)
 
-            self.safe_quit()
-            sleep_s = random.uniform(45, 90)
-            print(f"[*] Band {band} done ({len(batch)} listings) — restarting browser in {int(sleep_s)}s")
-            time.sleep(sleep_s)
+            pages_scraped = len(batch) // 28 + 1
+            base_sleep = random.uniform(60, 120)
+            extra_sleep = pages_scraped * random.uniform(3, 6)
             if browser_crashed:
-                time.sleep(random.uniform(30, 60))
+                extra_sleep += random.uniform(60, 120)
+            sleep_s = int(base_sleep + extra_sleep)
+            print(f"[*] Band {band} done ({len(batch)} listings) — restarting browser in {sleep_s}s")
+            self.safe_quit()
+            time.sleep(sleep_s)
             self.driver = self._get_driver()
+            # Visit homepage before next band to warm up the session
+            try:
+                self.driver.get(self.base_url)
+                time.sleep(random.uniform(8, 15))
+            except Exception:
+                pass
 
         self.safe_quit()
 
