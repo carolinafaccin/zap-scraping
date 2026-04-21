@@ -20,9 +20,9 @@ Clone the repository and run the main script: `python run.py`
 ```
 ZAP/
 ├── data/             # Data files (add to .gitignore)
-│   └── aggregate/
-│   └── geocode/
-│   ├── scrape/
+│   ├── aggregate/
+│   ├── geocode/
+│   └── scrape/
 ├── src/              # Source code
 ├── run.py            # Main script
 ├── .gitignore
