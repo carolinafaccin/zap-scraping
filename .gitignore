@@ -209,3 +209,4 @@ __marimo__/
 data/*
 .DS_Store
 .claude/*
+config.json

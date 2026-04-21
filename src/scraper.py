@@ -403,7 +403,7 @@ class ScraperZap:
 
             # Save checkpoint after every band so a crash never loses all data
             if all_data:
-                checkpoint = ROOT / "data/scrape" / f"_checkpoint_{self.transacao}.parquet"
+                checkpoint = ROOT / "data/scrape" / f"_checkpoint_{self.local}_{self.transacao}.parquet"
                 pd.DataFrame(all_data).to_parquet(checkpoint, index=False)
                 print(f"[*] Checkpoint saved ({len(all_data)} rows total) → {checkpoint.name}")
 
@@ -474,7 +474,8 @@ def main(transacao="aluguel"):
         return None
 
     df = df.drop_duplicates(subset=["id"], keep="last")
-    path = ROOT / "data/scrape" / f"{transacao}_{timestamp}.parquet"
+    slug = f"{config['city']}+{config['state']}"
+    path = ROOT / "data/scrape" / f"{slug}_{transacao}_{timestamp}.parquet"
     df.to_parquet(path, index=False)
 
     print(f"[{datetime.datetime.now().strftime('%H:%M:%S')}]  Saved → {path}  ({len(df)} rows, {elapsed}s)")

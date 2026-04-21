@@ -1,0 +1,7 @@
+{
+  "city": "porto-alegre",    // nome da cidade
+  "state": "rs",             // sigla da UF
+  "label": "Porto Alegre",
+  "transacao": "aluguel",    // ou "venda"
+  "max_listings": 1000.      // número máximo de anúncios coletados
+}
