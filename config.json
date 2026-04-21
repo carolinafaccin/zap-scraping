@@ -1,7 +1,7 @@
 {
-  "city": "porto-alegre",
+  "city": "santa-cruz-do-sul",
   "state": "rs",
-  "label": "Porto Alegre",
+  "label": "Santa Cruz do Sul",
   "transacao": "aluguel",
-  "max_listings": 1000
+  "max_listings": 1500
 }
